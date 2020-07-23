@@ -14,6 +14,12 @@ cc = meson.get_compiler('c')
 add_global_arguments('-D_GNU_SOURCE', language : 'c')
 add_global_arguments('-DPACKAGE_VERSION="@0@"'.format(meson.project_version()), language : 'c')
 
+# Support -Dmemcheck to compile/run binaries with AddressSanitizer
+if get_option('memcheck')
+  add_global_arguments('-fsanitize=address', language: 'c')
+  add_global_link_arguments('-fsanitize=address', language: 'c')
+endif
+
 # Translations
 if find_program('xgettext', required : get_option('nls')).found()
     add_global_arguments('-DGETTEXT_DOMAIN="' + meson.project_name() + '"', language : 'c')

@@ -7,3 +7,8 @@ option('nls',
        type: 'boolean',
        value: true,
        description : 'Enable native language support (translations)')
+
+option('memcheck',
+	type: 'boolean',
+	value: false,
+	description: 'Build and run binaries using Address Sanitizer')
